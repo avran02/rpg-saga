@@ -1,22 +1,15 @@
 package main
 
 import (
-	// "rpg-saga/src/game"
 	"fmt"
-	"math/rand"
+	// "math/rand"
+	"saga/src/game"
 )
 
-heroNames := []string{
-	"Aiden", "Bella", "Caden", "Daisy", "Elijah", "Freya", "Gavin", "Hazel",
-	"Isaac", "Jasmine", "Kaden", "Lily", "Mason", "Nora", "Oliver", "Penelope",
-	"Quinn", "Riley", "Samuel", "Sophia", "Tristan", "Uma", "Vincent", "Willow",
-	"Xander", "Yara", "Zane",
-}
-
 func main() {
-	for i := 1; i < 20; i++ {
-		a := rand.Intn(2)
-		fmt.Println(a)
+	fmt.Println("Started")
+	err := game.StartGame()
+	if err != nil {
+		fmt.Println("Error: ", err)
 	}
-	// game.StartGame()
 }

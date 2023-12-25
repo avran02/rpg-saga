@@ -7,8 +7,8 @@ type Effect interface {
 type baseEffect struct {
 	instantDamage     int
 	instantDamageType ActionType
-	ActionType
-	duration int
+	ActionType        // type of DoT damage
+	duration          int
 }
 
 type Resistance struct {
@@ -22,6 +22,7 @@ func (effect Resistance) ApplyEffect(c *Character) {
 
 type DamageOverTime struct {
 	baseEffect
+	dotDamage int
 }
 
 func (effect DamageOverTime) ApplyEffect(c *Character) {
