@@ -29,8 +29,9 @@ func (a Adjudicator) StartFight() (mechanics.Character, error) {
 			active = &a.Figther2
 			passive = &a.Figther1
 		}
-		tryUseAbility := rand.Intn(5) // set a chanse of using ability
-		fmt.Printf("\nTURN %d\n%s (%d)hp attack %s (%d)hp\n", a.CurrentTurn+1, active.Name, active.GetHealth(), passive.Name, passive.GetHealth())
+		tryUseAbility := rand.Intn(3) // set a chanse of using ability
+		a.CurrentTurn++
+		fmt.Printf("\nTURN %d\n%s (%d) hp attack %s (%d) hp\n", a.CurrentTurn, active.Name, active.GetHealth(), passive.Name, passive.GetHealth())
 		if tryUseAbility != 1 {
 			isAttacked, err := active.MakeAction(passive)
 			if err != nil {
@@ -51,15 +52,14 @@ func (a Adjudicator) StartFight() (mechanics.Character, error) {
 					fmt.Println(active.Name, "deals", active.Damage, "to", passive.Name, passive.GetHealth(), "left")
 				}
 			}
-			a.CurrentTurn++
-			h1 := a.Figther1.GetHealth()
-			h2 := a.Figther2.GetHealth()
-			if h1 < 1 || h2 < 1 {
-				if h1 > h2 {
-					return a.Figther1, nil
-				} else {
-					return a.Figther2, nil
-				}
+		}
+		h1 := a.Figther1.GetHealth()
+		h2 := a.Figther2.GetHealth()
+		if h1 < 1 || h2 < 1 {
+			if h1 > h2 {
+				return a.Figther1, nil
+			} else {
+				return a.Figther2, nil
 			}
 		}
 	}
